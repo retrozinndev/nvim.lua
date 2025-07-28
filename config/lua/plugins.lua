@@ -26,6 +26,7 @@ require("neo-tree").setup({
 });
 
 require("neocord").setup({});
+require("mini.pick").setup({});
 
 -- "hijack" netrw
 if vim.bo.filetype == "netrw" and vim.b.netrw_method == nil then

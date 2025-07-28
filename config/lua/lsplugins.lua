@@ -101,6 +101,8 @@ require("nvim-treesitter.configs").setup({
     }
 });
 
+require("trouble").setup();
+
 local cmp = require("cmp");
 
 cmp.setup.cmdline({ '/', '?',}, {
