@@ -1,24 +1,29 @@
-#!/bin/sh
+#!/bin/bash
 
-echo "[warn] this script is used to update the repo with current user configuration."
-echo "[tip] press Ctrl + C to quit the update script."
-echo "waiting 3 seconds to start..."
-sleep 3
+set -e
+
+if [[ -z "$XDG_CONFIG_HOME" ]]; then
+    XDG_CONFIG_HOME="$HOME/.config"
+fi
+
+NEOVIM_CONFIG_HOME="$XDG_CONFIG_HOME/nvim"
+
+echo "[warn] this script is used to update the repo with current user configuration. PLEASE RUN THIS INSIDE THE REPOSITORY DIRECTORY"
+echo "[tip] press ^C ([Ctrl] + [C]) to quit the script."
+echo "waiting 5 seconds to start... (skip by pressing any key)"
+read -t 5 -n 1
 
 printf "\n"
 
 echo "[info] deleting current repo's configuration"
-rm -rf init.lua lua/
+rm -rf ./config
 
 echo "[info] copying user nvim configuration to current dir"
-cp -r $HOME/.config/nvim/* ./
+mkdir ./config
+cp -r $NEOVIM_CONFIG_HOME/* ./config
 
-echo "[info] removing unnecessary files"
-rm -rf lazy-lock.json pack/
-
-if [[ -f /bin/git ]]; then
-    printf "Git Status:\n" && git status && printf "\n"
+if command -v git > /dev/null; then
+    git status && printf '\n'
 fi
 
-echo "Done! Quitting script."
-exit 0
+echo "Done, have a great day!"
