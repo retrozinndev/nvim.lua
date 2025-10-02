@@ -1,10 +1,14 @@
 
 vim.pack.add({
-    { src = "https://github.com/neovim/nvim-lspconfig" },
-    { src = "https://github.com/folke/lazydev.nvim" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/neovim/nvim-lspconfig", name = "LspConfig" },
+    { src = "https://github.com/folke/lazydev.nvim", name = "Lazydev" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", name = "Treesitter" },
     { src = "https://github.com/folke/trouble.nvim", name = "Trouble" },
-    { src = "https://github.com/hrsh7th/nvim-cmp" }
+    { src = "https://github.com/maan2003/lsp_lines.nvim", name = "LspLines" },
+    { src = "https://github.com/hrsh7th/nvim-cmp", name = "Cmp" },
+
+    -- language-specific
+    { src = "https://github.com/pmizio/typescript-tools.nvim" }
 });
 
 -- completion source plugins
@@ -12,7 +16,8 @@ local sources = {
     "cmp-nvim-lsp",
     "cmp-cmdline",
     "cmp-path",
-    "cmp-buffer"
+    "cmp-buffer",
+    "cmp-nvim-lsp-signature-help"
 };
 
 for _, source in ipairs(sources) do
@@ -24,14 +29,11 @@ end
 local servers = {
     "html",
     "bashls",
-    "ts_ls",
     "awk_ls",
     "pyright",
     "somesass_ls",
     "jsonls",
     "mesonlsp",
-    "denols",
-    "astro",
     "clangd",
     "emmet_language_server",
     "hyprls",
@@ -65,7 +67,15 @@ local config_servers = {
     }
 }
 
-function expand_capabilities(server)
+vim.diagnostic.config({
+    virtual_text = false,
+    virtual_lines = false
+})
+
+require("lsp_lines").setup();
+require("lsp_lines").toggle(); -- enable on startup
+
+local function expand_capabilities(server)
     if type(server) ~= "string" then
     	return;
     end
@@ -95,7 +105,17 @@ require("lazydev").setup({
     }
 });
 
+require("typescript-tools").setup({
+    settings = {
+        tsserver_plugins = {
+            "@astrojs/ts-plugin"
+        }
+    }
+});
+
 require("nvim-treesitter.configs").setup({
+    auto_install = true,
+    sync_install = true;
     highlight = {
 	enable = true;
     }
@@ -152,6 +172,7 @@ cmp.setup({
     sources = cmp.config.sources({
 	{ name = "nvim_lsp" },
 	{ name = "lazydev", group_index = 0 },
+        { name = "nvim_lsp_signature_help" }
     }, {
 	{ name = "buffer" }
     })
