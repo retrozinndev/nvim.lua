@@ -26,7 +26,6 @@ confirm the update by saving the buffer tab(`:w`) or cancel by quitting the tab(
 - [`lewis6991/gitsigns.nvim`](https://github.com/lewis6991/gitsigns.nvim): plugin for viewing diffs and change feed in-file.
 - [`rcarriga/nvim-notify`](https://github.com/rcarriga/nvim-notify): notification banners for neovim.
 - [`nvim-lualine/lualine`](https://github.com/nvim-lualine/lualine.nvim): better buffer line.
-- [``]()
 
 
 ## Color schemes (themes)
