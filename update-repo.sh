@@ -20,7 +20,7 @@ rm -rf ./config
 
 echo "[info] copying user nvim configuration to current dir"
 mkdir ./config
-cp -r $NEOVIM_CONFIG_HOME/* ./config
+cp -r $NEOVIM_CONFIG_HOME/. ./config
 
 if command -v git > /dev/null; then
     git status && printf '\n'
