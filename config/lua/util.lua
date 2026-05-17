@@ -39,6 +39,15 @@ function Merge_dict_tables(table1, table2, skip)
     return target;
 end
 
+--- concatenates `arr2` to `arr1`, modifying the original `arr1`
+---@param arr1 Array
+---@param arr2 Array
+function Concat_arrays(arr1, arr2)
+    for _, item in ipairs(arr2) do
+        arr1[#arr1 + 1] = item;
+    end
+end
+
 --- gets the length of items in `dict`
 ---@param dict table
 ---@return number

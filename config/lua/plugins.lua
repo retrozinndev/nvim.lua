@@ -4,7 +4,6 @@ vim.pack.add({
     { src = "https://github.com/MunifTanjim/nui.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/nvim-java/lua-async-await" },
-    { src = "https://github.com/s1n7ax/nvim-window-picker" },
 
     -- plugins
     { src = "https://github.com/shaun-mathew/Chameleon.nvim" },
@@ -12,6 +11,7 @@ vim.pack.add({
     { src = "https://github.com/vyfor/cord.nvim" },
     { src = "https://github.com/echasnovski/mini.pick" },
     { src = "https://github.com/ThePrimeagen/refactoring.nvim" },
+    { src = "https://github.com/s1n7ax/nvim-window-picker" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
     { src = "https://github.com/rcarriga/nvim-notify" },

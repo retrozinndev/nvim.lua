@@ -11,7 +11,7 @@ vim.pack.add({
 
 local cmp = require("cmp");
 
-cmp.setup.cmdline({ '/', '?',}, {
+cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
 	{ name = "buffer" }
@@ -21,17 +21,16 @@ cmp.setup.cmdline({ '/', '?',}, {
 	disallow_fullfuzzy_matching = false,
 	disallow_fuzzy_matching = false,
 	disallow_partial_fuzzy_matching = false,
-	disallow_partial_matching = true,
+	disallow_partial_matching = false,
 	disallow_prefix_unmatching = false
     };
 });
 
-cmp.setup.cmdline({':'}, {
+cmp.setup.cmdline({ ':' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-	{ name = "cmdline" }
-    }, {
-	{ name = "path"}
+	{ name = "cmdline" },
+        { name = "path" }
     }
 });
 
@@ -43,7 +42,7 @@ cmp.setup({
     },
 
     mapping = cmp.mapping.preset.insert({
-	['<C-b'] = cmp.mapping.scroll_docs(-4),
+	['<C-b>'] = cmp.mapping.scroll_docs(-4),
 	['<C-f>'] = cmp.mapping.scroll_docs(4),
 	['<C-e>'] = cmp.mapping.abort(),
 	['<C-Space>'] = cmp.mapping.complete(),
@@ -52,12 +51,11 @@ cmp.setup({
 	['<CR>'] = cmp.mapping.confirm({ select = true })
     }),
     window = {
-	documentation = cmp.config.window.bordered(),
-	cmp = cmp.config.window.bordered()
+	--documentation = cmp.config.window.bordered(),
+	--cmp = cmp.config.window.bordered()
     },
     sources = cmp.config.sources({
 	{ name = "nvim_lsp" },
-	{ name = "lazydev", group_index = 0 },
         { name = "nvim_lsp_signature_help" }
     }, {
 	{ name = "buffer" }

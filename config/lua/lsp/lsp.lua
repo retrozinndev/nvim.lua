@@ -36,6 +36,10 @@ local servers = {
         cmd = { "blueprint-compiler", "lsp" },
         filetypes = { "blueprint" }
     },
+    vala_ls = {
+        cmd = { "vala-language-server" },
+        filetypes = { "vala", "genie" }
+    },
     ts_ls = {
         cmd = { "typescript-language-server", "--stdio" },
         filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
@@ -60,7 +64,10 @@ local servers = {
 		    enable = false;
 		},
                 workspace = {
-                    library = vim.api.nvim_get_runtime_file("", true)
+                    library = Concat_arrays(
+                        vim.api.nvim_get_runtime_file("", true),
+                        {}
+                    );
                 }
 	    }
 	}
@@ -79,8 +86,8 @@ local servers = {
         filetypes = { "json" }
     },
     cssls = {
-        cmd = { "vscode-css-languageserver", "--stdio" },
-	filetypes = { "css", "sass", "scss" }
+        cmd = { "vscode-css-language-server", "--stdio" },
+	filetypes = { "css" }
     },
     jdtls = {
         filetypes = { "java" },
@@ -98,10 +105,10 @@ for server, userconfig in pairs(servers) do
         vim.lsp.config(server, userconfig);
     end
 
-    vim.lsp.enable(server);
     vim.lsp.config(server, {
         capabilities = Merge_dict_tables(cmp_capabilities, {
             semanticTokensProvider = nil
         }, true);
     });
+    vim.lsp.enable(server);
 end
