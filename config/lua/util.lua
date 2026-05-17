@@ -40,12 +40,14 @@ function Merge_dict_tables(table1, table2, skip)
 end
 
 --- concatenates `arr2` to `arr1`, modifying the original `arr1`
----@param arr1 Array
----@param arr2 Array
+---@param arr1 table<number, string>
+---@param arr2 table<number, string>
 function Concat_arrays(arr1, arr2)
-    for _, item in ipairs(arr2) do
-        arr1[#arr1 + 1] = item;
+    for _, val in ipairs(arr2) do
+        table.insert(arr1, val);
     end
+
+    return arr1;
 end
 
 --- gets the length of items in `dict`
@@ -63,7 +65,7 @@ end
 
 ---@param str string
 ---@param separator string
----@return Array
+---@return table<number, string>
 function String_split(str, separator)
     local strarr = {};
 

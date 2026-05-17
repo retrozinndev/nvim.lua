@@ -3,6 +3,8 @@ require("lsp/plugins");
 require("lsp/cmp");
 
 local capabilities = vim.lsp.protocol.make_client_capabilities();
+
+---@type table<string, vim.lsp.Config>
 local servers = {
     bashls = {
         cmd = { "bash-language-server", "start" },
@@ -65,9 +67,14 @@ local servers = {
 		},
                 workspace = {
                     library = Concat_arrays(
-                        vim.api.nvim_get_runtime_file("", true),
-                        {}
-                    );
+                        Concat_arrays(
+                            vim.api.nvim_get_runtime_file("", true),
+                            vim.api.nvim_get_runtime_file("lua/lspconfig", false)
+                        ),
+			{
+                            "/usr/share/hypr/stubs"
+                        }
+                    )
                 }
 	    }
 	}
@@ -106,9 +113,7 @@ for server, userconfig in pairs(servers) do
     end
 
     vim.lsp.config(server, {
-        capabilities = Merge_dict_tables(cmp_capabilities, {
-            semanticTokensProvider = nil
-        }, true);
+        capabilities = cmp_capabilities
     });
     vim.lsp.enable(server);
 end
