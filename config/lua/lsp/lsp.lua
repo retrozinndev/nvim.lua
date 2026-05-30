@@ -42,8 +42,8 @@ local servers = {
         cmd = { "vala-language-server" },
         filetypes = { "vala", "genie" }
     },
-    ts_ls = {
-        cmd = { "typescript-language-server", "--stdio" },
+    tsgo = {
+        cmd = { "tsgo", "--lsp", "--stdio" },
         filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
     },
     nil_ls = {
@@ -90,7 +90,7 @@ local servers = {
     },
     jsonls = {
         cmd = { "vscode-json-language-server", "--stdio" },
-        filetypes = { "json" }
+        filetypes = { "json", "jsonc" }
     },
     cssls = {
         cmd = { "vscode-css-language-server", "--stdio" },
