@@ -1,6 +1,9 @@
 # retrozinndev's `.config/nvim`
 My minimal neovim configuration with the plugins I use!
 
+> [!warning]
+> Moved to [retrozinndev/.config](https://github.com/retrozinndev/.config).
+
 For managing plugins, I use the new native plugin manager (`vim.pack`).
 Also, I'm using native `treesitter` and `lsp`.
 To make this config work in your environment, please use latest Neovim nightly. (You can use [`bob`](https://github.com/mordechaihadad/bob) for that)
